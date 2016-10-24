@@ -6,7 +6,6 @@ import java.util.Objects;
 
 public class Game {
     private final ArrayList<Player> players = new ArrayList<>();
-    private final boolean[] inPenaltyBox = new boolean[6];
 
     private final LinkedList<String> popQuestions = new LinkedList<>();
     private final LinkedList<String> scienceQuestions = new LinkedList<>();
@@ -34,6 +33,10 @@ public class Game {
     }
 
     public void add(Player player) {
+        if (players.size() == 6) {
+            return;
+        }
+
         players.add(player);
 
         System.out.println(player.getName() + " was added");
@@ -101,7 +104,7 @@ public class Game {
         }
     }
 
-    public boolean wasCorrectlyAnswered() {
+    public boolean rightAnswer() {
         if (currentPlayer.isInPenaltyBox()) {
             if (isGettingOutOfPenaltyBox) {
                 System.out.println("Answer was correct!!!!");
@@ -116,7 +119,7 @@ public class Game {
                 return true;
             }
         } else {
-            System.out.println("Answer was corrent!!!!");
+            System.out.println("Answer was correct!!!!");
             currentPlayer.givePurse();
             System.out.println(currentPlayer.getName() + " now has " + currentPlayer.getPurses() + " Gold Coins.");
 
