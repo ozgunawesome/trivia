@@ -22,7 +22,7 @@ public class Game {
     }
 
     public void roll(int roll) {
-        System.out.println(players.getName() + Constants.IS_THE_CURRENT_PLAYER);
+        System.out.println(players.getNameForCurrent() + Constants.IS_THE_CURRENT_PLAYER);
         System.out.println(Constants.THEY_HAVE_ROLLED_A + roll);
 
         if (players.getCurrentPlayer().isInPenaltyBox()) {
@@ -52,7 +52,7 @@ public class Game {
 
     public boolean wrongAnswer() {
         System.out.println(Constants.QUESTION_INCORRECTLY_ANSWERED);
-        System.out.println(players.getName() + Constants.WAS_SENT_TO_PENALTY_BOX);
+        System.out.println(players.getNameForCurrent() + Constants.WAS_SENT_TO_PENALTY_BOX);
         players.getCurrentPlayer().sendToPenaltyBox();
 
         players.goToNextPlayer();
@@ -61,17 +61,17 @@ public class Game {
 
     private void letOutOfPenaltyBox() {
         players.getCurrentPlayer().setGettingOutOfPenaltyBox();
-        System.out.println(players.getName() + Constants.GETTING_OUT_OF_PENALTY_BOX);
+        System.out.println(players.getNameForCurrent() + Constants.GETTING_OUT_OF_PENALTY_BOX);
     }
 
     private void notLetOutOfPenaltyBox() {
-        System.out.println(players.getName() + Constants.NOT_GETTING_OUT_OF_PENALTY_BOX);
+        System.out.println(players.getNameForCurrent() + Constants.NOT_GETTING_OUT_OF_PENALTY_BOX);
         players.getCurrentPlayer().setNotGettingOutOfPenaltyBox();
     }
 
     private void advanceByPlacesAndAskQuestion(int roll) {
         players.getCurrentPlayer().advanceByPlaces(roll);
-        System.out.println(players.getName() + Constants.NEW_LOCATION + players.getCurrentPlayer().getLocation());
+        System.out.println(players.getNameForCurrent() + Constants.NEW_LOCATION + players.getCurrentPlayer().getLocation());
         System.out.println(Constants.THE_CATEGORY_IS + players.getCurrentPlayer().getQuestionTypeForLocation());
         System.out.println(questions.getNextForType(players.getCurrentPlayer().getQuestionTypeForLocation()));
     }
@@ -79,7 +79,7 @@ public class Game {
     private boolean givePurseCheckIfNotWinAndGotoNextPlayer() {
         System.out.println(Constants.ANSWER_WAS_CORRECT);
         players.getCurrentPlayer().givePurse();
-        System.out.println(players.getName() + Constants.NOW_HAS + players.getCurrentPlayer().getPurses() + Constants.GOLD_COINS);
+        System.out.println(players.getNameForCurrent() + Constants.NOW_HAS + players.getPursesForCurrent() + Constants.GOLD_COINS);
 
         boolean winner = didPlayerNotWin();
         players.goToNextPlayer();
@@ -87,7 +87,7 @@ public class Game {
     }
 
     private boolean didPlayerNotWin() {
-        return !(players.getCurrentPlayer().getPurses() == 6);
+        return !(players.getPursesForCurrent() == 6);
     }
 
 }

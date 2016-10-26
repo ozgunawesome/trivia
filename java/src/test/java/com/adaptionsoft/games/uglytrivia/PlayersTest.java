@@ -53,6 +53,12 @@ public class PlayersTest {
     @Test
     public void testCurrentPlayerName() {
         when(playerOne.getName()).thenReturn("x");
-        assertEquals(players.getName(), playerOne.getName());
+        assertEquals(players.getNameForCurrent(), playerOne.getName());
+    }
+
+    @Test
+    public void testCurrentPlayerPurses() {
+        when(playerOne.getPurses()).thenReturn(5);
+        assertSame(players.getPursesForCurrent(), playerOne.getPurses());
     }
 }

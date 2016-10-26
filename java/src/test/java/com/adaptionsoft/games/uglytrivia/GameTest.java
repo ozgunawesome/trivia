@@ -121,6 +121,7 @@ public class GameTest {
     public void testPlayerWinCondition() {
         Player myPlayer = new Player("x");
         when(players.getCurrentPlayer()).thenReturn(myPlayer);
+        when(players.getPursesForCurrent()).thenCallRealMethod();
         myPlayer.givePurse();
         myPlayer.givePurse();
         myPlayer.givePurse();

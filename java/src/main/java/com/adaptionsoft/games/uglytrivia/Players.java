@@ -37,8 +37,12 @@ class Players {
         currentPlayer = (currentPlayer + 1) % players.size();
     }
 
-    public String getName() {
+    public String getNameForCurrent() {
         return getCurrentPlayer().getName();
+    }
+
+    public int getPursesForCurrent() {
+        return getCurrentPlayer().getPurses();
     }
 
 }
