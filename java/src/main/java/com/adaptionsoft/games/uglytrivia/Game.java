@@ -54,14 +54,12 @@ public class Game {
             }
 
         } else {
-
             players.getCurrentPlayer().advanceByPlaces(roll);
 
             System.out.println(players.getCurrentPlayer().getName() + Constants.NEW_LOCATION + players.getCurrentPlayer().getLocation());
             System.out.println(Constants.THE_CATEGORY_IS + currentCategory());
             askQuestion();
         }
-
     }
 
     private void askQuestion() {
@@ -101,7 +99,7 @@ public class Game {
                 players.getCurrentPlayer().givePurse();
                 System.out.println(players.getCurrentPlayer().getName() + Constants.NOW_HAS + players.getCurrentPlayer().getPurses() + Constants.GOLD_COINS);
 
-                boolean winner = didPlayerWin();
+                boolean winner = didPlayerNotWin();
                 players.goToNextPlayer();
                 return winner;
             } else {
@@ -113,7 +111,7 @@ public class Game {
             players.getCurrentPlayer().givePurse();
             System.out.println(players.getCurrentPlayer().getName() + Constants.NOW_HAS + players.getCurrentPlayer().getPurses() + Constants.GOLD_COINS);
 
-            boolean winner = didPlayerWin();
+            boolean winner = didPlayerNotWin();
             players.goToNextPlayer();
 
             return winner;
@@ -129,7 +127,7 @@ public class Game {
         return true;
     }
 
-    private boolean didPlayerWin() {
+    private boolean didPlayerNotWin() {
         return !(players.getCurrentPlayer().getPurses() == 6);
     }
 
