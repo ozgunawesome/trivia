@@ -11,8 +11,6 @@ public class Game {
 
     private final Players players = new Players();
 
-    private boolean isGettingOutOfPenaltyBox;
-
     public Game() {
         for (int i = 0; i < 50; i++) {
             popQuestions.addLast(Constants.POP_QUESTION + i);
@@ -40,7 +38,7 @@ public class Game {
 
         if (players.getCurrentPlayer().isInPenaltyBox()) {
             if (roll % 2 != 0) {
-                isGettingOutOfPenaltyBox = true;
+                players.getCurrentPlayer().setGettingOutOfPenaltyBox();
 
                 System.out.println(players.getCurrentPlayer().getName() + Constants.GETTING_OUT_OF_PENALTY_BOX);
                 players.getCurrentPlayer().advanceByPlaces(roll);
@@ -50,7 +48,7 @@ public class Game {
                 askQuestion();
             } else {
                 System.out.println(players.getCurrentPlayer().getName() + Constants.NOT_GETTING_OUT_OF_PENALTY_BOX);
-                isGettingOutOfPenaltyBox = false;
+                players.getCurrentPlayer().setNotGettingOutOfPenaltyBox();
             }
 
         } else {
@@ -94,7 +92,7 @@ public class Game {
 
     public boolean rightAnswer() {
         if (players.getCurrentPlayer().isInPenaltyBox()) {
-            if (isGettingOutOfPenaltyBox) {
+            if (players.getCurrentPlayer().isGettingOutOfPenaltyBox()) {
                 System.out.println(Constants.ANSWER_WAS_CORRECT);
                 players.getCurrentPlayer().givePurse();
                 System.out.println(players.getCurrentPlayer().getName() + Constants.NOW_HAS + players.getCurrentPlayer().getPurses() + Constants.GOLD_COINS);

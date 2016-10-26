@@ -5,10 +5,9 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Created by ozgunayaz on 10/25/16.
+ * --- Created by ozgunayaz on 10/25/16 ---
  */
 public class PlayerTest {
-
 
     @Test
     public void testLocations() {
@@ -42,6 +41,16 @@ public class PlayerTest {
         assertTrue(player.isInPenaltyBox());
         player.removeFromPenaltyBox();
         assertFalse(player.isInPenaltyBox());
+    }
+
+    @Test
+    public void testGettingOutPenaltyBox() {
+        Player player = new Player("x");
+        assertFalse(player.isGettingOutOfPenaltyBox());
+        player.setGettingOutOfPenaltyBox();
+        assertTrue(player.isGettingOutOfPenaltyBox());
+        player.setNotGettingOutOfPenaltyBox();
+        assertFalse(player.isGettingOutOfPenaltyBox());
     }
 
 }

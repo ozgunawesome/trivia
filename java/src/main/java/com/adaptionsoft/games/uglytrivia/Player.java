@@ -1,7 +1,7 @@
 package com.adaptionsoft.games.uglytrivia;
 
 /**
- * Created by ozgunayaz on 10/24/16.
+ * --- Created by ozgunayaz on 10/24/16 ---
  */
 public class Player {
 
@@ -9,6 +9,7 @@ public class Player {
     private int purses;
     private int location;
     private boolean inPenaltyBox;
+    private boolean isGettingOutOfPenaltyBox;
 
     public Player(String name) {
         this.name = name;
@@ -46,5 +47,18 @@ public class Player {
     public void removeFromPenaltyBox() {
         inPenaltyBox = false;
     }
+
+    public boolean isGettingOutOfPenaltyBox() {
+        return isGettingOutOfPenaltyBox;
+    }
+
+    public void setGettingOutOfPenaltyBox() {
+        isGettingOutOfPenaltyBox = true;
+    }
+
+    public void setNotGettingOutOfPenaltyBox() {
+        isGettingOutOfPenaltyBox = false;
+    }
+
 
 }
