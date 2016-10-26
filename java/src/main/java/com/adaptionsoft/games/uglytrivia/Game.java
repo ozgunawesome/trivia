@@ -24,7 +24,7 @@ public class Game {
                 players.getCurrentPlayer().advanceByPlaces(roll);
 
                 System.out.println(players.getCurrentPlayer().getName() + Constants.NEW_LOCATION + players.getCurrentPlayer().getLocation());
-                System.out.println(Constants.THE_CATEGORY_IS + currentCategory());
+                System.out.println(Constants.THE_CATEGORY_IS + players.getCurrentPlayer().getQuestionTypeForLocation());
                 askQuestion();
             } else {
                 System.out.println(players.getCurrentPlayer().getName() + Constants.NOT_GETTING_OUT_OF_PENALTY_BOX);
@@ -35,26 +35,13 @@ public class Game {
             players.getCurrentPlayer().advanceByPlaces(roll);
 
             System.out.println(players.getCurrentPlayer().getName() + Constants.NEW_LOCATION + players.getCurrentPlayer().getLocation());
-            System.out.println(Constants.THE_CATEGORY_IS + currentCategory());
+            System.out.println(Constants.THE_CATEGORY_IS + players.getCurrentPlayer().getQuestionTypeForLocation());
             askQuestion();
         }
     }
 
     private void askQuestion() {
-        System.out.println(questions.getNextForType(currentCategory()));
-    }
-
-    private QuestionType currentCategory() {
-        switch (players.getCurrentPlayer().getLocation() % 4) {
-            case 0:
-                return QuestionType.POP;
-            case 1:
-                return QuestionType.SCIENCE;
-            case 2:
-                return QuestionType.SPORTS;
-            default:
-                return QuestionType.ROCK;
-        }
+        System.out.println(questions.getNextForType(players.getCurrentPlayer().getQuestionTypeForLocation()));
     }
 
     public boolean rightAnswer() {

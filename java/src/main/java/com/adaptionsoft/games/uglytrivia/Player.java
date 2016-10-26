@@ -60,5 +60,17 @@ public class Player {
         isGettingOutOfPenaltyBox = false;
     }
 
+    public QuestionType getQuestionTypeForLocation() {
+        switch (this.getLocation() % 4) {
+            case 0:
+                return QuestionType.POP;
+            case 1:
+                return QuestionType.SCIENCE;
+            case 2:
+                return QuestionType.SPORTS;
+            default:
+                return QuestionType.ROCK;
+        }
+    }
 
 }

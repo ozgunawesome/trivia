@@ -53,4 +53,18 @@ public class PlayerTest {
         assertFalse(player.isGettingOutOfPenaltyBox());
     }
 
+    @Test
+    public void testQuestionTypeForLocation() {
+        Player player = new Player("x");
+        assertEquals(0, player.getLocation());
+        assertEquals(QuestionType.POP, player.getQuestionTypeForLocation());
+        player.advanceByPlaces(1);
+        assertEquals(QuestionType.SCIENCE, player.getQuestionTypeForLocation());
+        player.advanceByPlaces(1);
+        assertEquals(QuestionType.SPORTS, player.getQuestionTypeForLocation());
+        player.advanceByPlaces(1);
+        assertEquals(QuestionType.ROCK, player.getQuestionTypeForLocation());
+        player.advanceByPlaces(1);
+        assertEquals(QuestionType.POP, player.getQuestionTypeForLocation());
+    }
 }
