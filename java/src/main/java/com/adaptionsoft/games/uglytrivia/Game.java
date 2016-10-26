@@ -37,6 +37,28 @@ public class Game {
         }
     }
 
+    public boolean rightAnswer() {
+        if (players.getCurrentPlayer().isInPenaltyBox()) {
+            if (players.getCurrentPlayer().isGettingOutOfPenaltyBox()) {
+                return givePurseCheckIfNotWinAndGotoNextPlayer();
+            } else {
+                players.goToNextPlayer();
+                return true;
+            }
+        } else {
+            return givePurseCheckIfNotWinAndGotoNextPlayer();
+        }
+    }
+
+    public boolean wrongAnswer() {
+        System.out.println(Constants.QUESTION_INCORRECTLY_ANSWERED);
+        System.out.println(players.getCurrentPlayer().getName() + Constants.WAS_SENT_TO_PENALTY_BOX);
+        players.getCurrentPlayer().sendToPenaltyBox();
+
+        players.goToNextPlayer();
+        return true;
+    }
+
     private void letOutOfPenaltyBox() {
         players.getCurrentPlayer().setGettingOutOfPenaltyBox();
         System.out.println(players.getCurrentPlayer().getName() + Constants.GETTING_OUT_OF_PENALTY_BOX);
@@ -54,19 +76,6 @@ public class Game {
         System.out.println(questions.getNextForType(players.getCurrentPlayer().getQuestionTypeForLocation()));
     }
 
-    public boolean rightAnswer() {
-        if (players.getCurrentPlayer().isInPenaltyBox()) {
-            if (players.getCurrentPlayer().isGettingOutOfPenaltyBox()) {
-                return givePurseCheckIfNotWinAndGotoNextPlayer();
-            } else {
-                players.goToNextPlayer();
-                return true;
-            }
-        } else {
-            return givePurseCheckIfNotWinAndGotoNextPlayer();
-        }
-    }
-
     private boolean givePurseCheckIfNotWinAndGotoNextPlayer() {
         System.out.println(Constants.ANSWER_WAS_CORRECT);
         players.getCurrentPlayer().givePurse();
@@ -75,15 +84,6 @@ public class Game {
         boolean winner = didPlayerNotWin();
         players.goToNextPlayer();
         return winner;
-    }
-
-    public boolean wrongAnswer() {
-        System.out.println(Constants.QUESTION_INCORRECTLY_ANSWERED);
-        System.out.println(players.getCurrentPlayer().getName() + Constants.WAS_SENT_TO_PENALTY_BOX);
-        players.getCurrentPlayer().sendToPenaltyBox();
-
-        players.goToNextPlayer();
-        return true;
     }
 
     private boolean didPlayerNotWin() {
