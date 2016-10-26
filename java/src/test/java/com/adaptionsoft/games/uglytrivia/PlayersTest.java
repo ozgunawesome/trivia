@@ -9,6 +9,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * --- Created by ozgunayaz on 10/26/16 ---
@@ -47,5 +48,11 @@ public class PlayersTest {
         }
 
         assertEquals(players.howManyPlayers(), 6);
+    }
+
+    @Test
+    public void testCurrentPlayerName() {
+        when(playerOne.getName()).thenReturn("x");
+        assertEquals(players.getName(), playerOne.getName());
     }
 }
