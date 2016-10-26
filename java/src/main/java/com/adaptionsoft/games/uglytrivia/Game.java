@@ -27,54 +27,54 @@ public class Game {
 
         if (players.getCurrentPlayer().isInPenaltyBox()) {
             if (roll % 2 != 0) {
-                players.getCurrentPlayer().setGettingOutOfPenaltyBox();
-                System.out.println(players.getCurrentPlayer().getName() + Constants.GETTING_OUT_OF_PENALTY_BOX);
-
-                players.getCurrentPlayer().advanceByPlaces(roll);
-                System.out.println(players.getCurrentPlayer().getName() + Constants.NEW_LOCATION + players.getCurrentPlayer().getLocation());
-
-                System.out.println(Constants.THE_CATEGORY_IS + players.getCurrentPlayer().getQuestionTypeForLocation());
-                askQuestion();
+                letOutOfPenaltyBox();
+                advanceByPlacesAndAskQuestion(roll);
             } else {
-                System.out.println(players.getCurrentPlayer().getName() + Constants.NOT_GETTING_OUT_OF_PENALTY_BOX);
-                players.getCurrentPlayer().setNotGettingOutOfPenaltyBox();
+                notLetOutOfPenaltyBox();
             }
-
         } else {
-            players.getCurrentPlayer().advanceByPlaces(roll);
-            System.out.println(players.getCurrentPlayer().getName() + Constants.NEW_LOCATION + players.getCurrentPlayer().getLocation());
-            System.out.println(Constants.THE_CATEGORY_IS + players.getCurrentPlayer().getQuestionTypeForLocation());
-            askQuestion();
+            advanceByPlacesAndAskQuestion(roll);
         }
     }
 
-    private void askQuestion() {
+    private void letOutOfPenaltyBox() {
+        players.getCurrentPlayer().setGettingOutOfPenaltyBox();
+        System.out.println(players.getCurrentPlayer().getName() + Constants.GETTING_OUT_OF_PENALTY_BOX);
+    }
+
+    private void notLetOutOfPenaltyBox() {
+        System.out.println(players.getCurrentPlayer().getName() + Constants.NOT_GETTING_OUT_OF_PENALTY_BOX);
+        players.getCurrentPlayer().setNotGettingOutOfPenaltyBox();
+    }
+
+    private void advanceByPlacesAndAskQuestion(int roll) {
+        players.getCurrentPlayer().advanceByPlaces(roll);
+        System.out.println(players.getCurrentPlayer().getName() + Constants.NEW_LOCATION + players.getCurrentPlayer().getLocation());
+        System.out.println(Constants.THE_CATEGORY_IS + players.getCurrentPlayer().getQuestionTypeForLocation());
         System.out.println(questions.getNextForType(players.getCurrentPlayer().getQuestionTypeForLocation()));
     }
 
     public boolean rightAnswer() {
         if (players.getCurrentPlayer().isInPenaltyBox()) {
             if (players.getCurrentPlayer().isGettingOutOfPenaltyBox()) {
-                System.out.println(Constants.ANSWER_WAS_CORRECT);
-                players.getCurrentPlayer().givePurse();
-                System.out.println(players.getCurrentPlayer().getName() + Constants.NOW_HAS + players.getCurrentPlayer().getPurses() + Constants.GOLD_COINS);
-
-                boolean winner = didPlayerNotWin();
-                players.goToNextPlayer();
-                return winner;
+                return givePurseCheckIfNotWinAndGotoNextPlayer();
             } else {
                 players.goToNextPlayer();
                 return true;
             }
         } else {
-            System.out.println(Constants.ANSWER_WAS_CORRECT);
-            players.getCurrentPlayer().givePurse();
-            System.out.println(players.getCurrentPlayer().getName() + Constants.NOW_HAS + players.getCurrentPlayer().getPurses() + Constants.GOLD_COINS);
-
-            boolean winner = didPlayerNotWin();
-            players.goToNextPlayer();
-            return winner;
+            return givePurseCheckIfNotWinAndGotoNextPlayer();
         }
+    }
+
+    private boolean givePurseCheckIfNotWinAndGotoNextPlayer() {
+        System.out.println(Constants.ANSWER_WAS_CORRECT);
+        players.getCurrentPlayer().givePurse();
+        System.out.println(players.getCurrentPlayer().getName() + Constants.NOW_HAS + players.getCurrentPlayer().getPurses() + Constants.GOLD_COINS);
+
+        boolean winner = didPlayerNotWin();
+        players.goToNextPlayer();
+        return winner;
     }
 
     public boolean wrongAnswer() {
