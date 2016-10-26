@@ -25,7 +25,7 @@ public class Game {
         System.out.println(players.getNameForCurrent() + Constants.IS_THE_CURRENT_PLAYER);
         System.out.println(Constants.THEY_HAVE_ROLLED_A + roll);
 
-        if (players.getCurrentPlayer().isInPenaltyBox()) {
+        if (players.isCurrentInPenaltyBox()) {
             if (roll % 2 != 0) {
                 letOutOfPenaltyBox();
                 advanceByPlacesAndAskQuestion(roll);
@@ -38,7 +38,7 @@ public class Game {
     }
 
     public boolean rightAnswer() {
-        if (players.getCurrentPlayer().isInPenaltyBox()) {
+        if (players.isCurrentInPenaltyBox()) {
             if (players.getCurrentPlayer().isGettingOutOfPenaltyBox()) {
                 return givePurseCheckIfNotWinAndGotoNextPlayer();
             } else {

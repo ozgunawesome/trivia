@@ -35,6 +35,7 @@ public class GameTest {
     @Before
     public void setup() {
         when(players.getCurrentPlayer()).thenReturn(playerOne);
+        when(players.isCurrentInPenaltyBox()).thenCallRealMethod();
     }
 
     @Test
