@@ -24,10 +24,6 @@ public class Game {
         return Constants.ROCK_QUESTION + index;
     }
 
-    public boolean isPlayable() {
-        return (players.howManyPlayers() >= 2);
-    }
-
     public void add(Player player) {
         players.addPlayer(player);
     }
