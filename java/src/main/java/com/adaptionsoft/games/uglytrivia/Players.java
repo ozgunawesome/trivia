@@ -14,7 +14,7 @@ class Players {
     private final List<Player> players = new ArrayList<>(6);
     private int currentPlayer;
 
-    void addPlayer(Player player) {
+    public void addPlayer(Player player) {
         if (players.size() == MAX_PLAYERS) {
             return;
         }

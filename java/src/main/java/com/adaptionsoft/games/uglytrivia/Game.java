@@ -2,10 +2,19 @@ package com.adaptionsoft.games.uglytrivia;
 
 public class Game {
 
-    private final Questions questions = new Questions();
-    private final Players players = new Players();
+    private Questions questions;
+    private Players players;
 
     public Game() {
+
+        if (questions == null) {
+            questions = new Questions();
+        }
+
+        if (players == null) {
+            players = new Players();
+        }
+
     }
 
     public void add(Player player) {
@@ -19,11 +28,11 @@ public class Game {
         if (players.getCurrentPlayer().isInPenaltyBox()) {
             if (roll % 2 != 0) {
                 players.getCurrentPlayer().setGettingOutOfPenaltyBox();
-
                 System.out.println(players.getCurrentPlayer().getName() + Constants.GETTING_OUT_OF_PENALTY_BOX);
-                players.getCurrentPlayer().advanceByPlaces(roll);
 
+                players.getCurrentPlayer().advanceByPlaces(roll);
                 System.out.println(players.getCurrentPlayer().getName() + Constants.NEW_LOCATION + players.getCurrentPlayer().getLocation());
+
                 System.out.println(Constants.THE_CATEGORY_IS + players.getCurrentPlayer().getQuestionTypeForLocation());
                 askQuestion();
             } else {
@@ -33,7 +42,6 @@ public class Game {
 
         } else {
             players.getCurrentPlayer().advanceByPlaces(roll);
-
             System.out.println(players.getCurrentPlayer().getName() + Constants.NEW_LOCATION + players.getCurrentPlayer().getLocation());
             System.out.println(Constants.THE_CATEGORY_IS + players.getCurrentPlayer().getQuestionTypeForLocation());
             askQuestion();
@@ -65,7 +73,6 @@ public class Game {
 
             boolean winner = didPlayerNotWin();
             players.goToNextPlayer();
-
             return winner;
         }
     }
