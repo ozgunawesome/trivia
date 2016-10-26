@@ -61,4 +61,10 @@ public class PlayersTest {
         when(playerOne.getPurses()).thenReturn(5);
         assertSame(players.getPursesForCurrent(), playerOne.getPurses());
     }
+
+    @Test
+    public void testCurrentPenaltyBox() {
+        when(playerOne.isInPenaltyBox()).thenReturn(true);
+        assertSame(players.isCurrentInPenaltyBox(), playerOne.isInPenaltyBox());
+    }
 }

@@ -45,4 +45,8 @@ class Players {
         return getCurrentPlayer().getPurses();
     }
 
+    public boolean isCurrentInPenaltyBox() {
+        return getCurrentPlayer().isInPenaltyBox();
+    }
+
 }
