@@ -1,23 +1,11 @@
 package com.adaptionsoft.games.uglytrivia;
 
-import java.util.LinkedList;
-
 public class Game {
 
-    private final LinkedList<String> popQuestions = new LinkedList<>();
-    private final LinkedList<String> scienceQuestions = new LinkedList<>();
-    private final LinkedList<String> sportsQuestions = new LinkedList<>();
-    private final LinkedList<String> rockQuestions = new LinkedList<>();
-
+    private final Questions questions = new Questions();
     private final Players players = new Players();
 
     public Game() {
-        for (int i = 0; i < 50; i++) {
-            popQuestions.addLast(Constants.POP_QUESTION + i);
-            scienceQuestions.addLast(Constants.SCIENCE_QUESTION + i);
-            sportsQuestions.addLast(Constants.SPORTS_QUESTION + i);
-            rockQuestions.addLast(Constants.ROCK_QUESTION + i);
-        }
     }
 
     public void add(Player player) {
@@ -53,20 +41,7 @@ public class Game {
     }
 
     private void askQuestion() {
-        switch (currentCategory()) {
-            case POP:
-                System.out.println(popQuestions.removeFirst());
-                break;
-            case SCIENCE:
-                System.out.println(scienceQuestions.removeFirst());
-                break;
-            case SPORTS:
-                System.out.println(sportsQuestions.removeFirst());
-                break;
-            case ROCK:
-                System.out.println(rockQuestions.removeFirst());
-                break;
-        }
+        System.out.println(questions.getNextForType(currentCategory()));
     }
 
     private QuestionType currentCategory() {
