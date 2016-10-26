@@ -2,7 +2,6 @@ package com.adaptionsoft.games.uglytrivia;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Objects;
 
 public class Game {
     private final ArrayList<Player> players = new ArrayList<>();
@@ -80,27 +79,32 @@ public class Game {
     }
 
     private void askQuestion() {
-        if (Objects.equals(currentCategory(), "Pop"))
-            System.out.println(popQuestions.removeFirst());
-        if (Objects.equals(currentCategory(), "Science"))
-            System.out.println(scienceQuestions.removeFirst());
-        if (Objects.equals(currentCategory(), "Sports"))
-            System.out.println(sportsQuestions.removeFirst());
-        if (Objects.equals(currentCategory(), "Rock"))
-            System.out.println(rockQuestions.removeFirst());
+        switch (currentCategory()) {
+            case POP:
+                System.out.println(popQuestions.removeFirst());
+                break;
+            case SCIENCE:
+                System.out.println(scienceQuestions.removeFirst());
+                break;
+            case SPORTS:
+                System.out.println(sportsQuestions.removeFirst());
+                break;
+            case ROCK:
+                System.out.println(rockQuestions.removeFirst());
+                break;
+        }
     }
 
-
-    private String currentCategory() {
+    private QuestionType currentCategory() {
         switch (currentPlayer.getLocation() % 4) {
             case 0:
-                return "Pop";
+                return QuestionType.POP;
             case 1:
-                return "Science";
+                return QuestionType.SCIENCE;
             case 2:
-                return "Sports";
+                return QuestionType.SPORTS;
             default:
-                return "Rock";
+                return QuestionType.ROCK;
         }
     }
 
