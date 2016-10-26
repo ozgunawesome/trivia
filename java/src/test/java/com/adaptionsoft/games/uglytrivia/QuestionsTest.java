@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class QuestionsTest {
 
-    final Questions questions = new Questions();
+    private final Questions questions = new Questions();
 
     @Test
     public void testQuestions() {

@@ -5,7 +5,7 @@ import java.util.LinkedList;
 /**
  * --- Created by ozgunayaz on 10/26/16 ---
  */
-public class Questions {
+class Questions {
 
     private final LinkedList<String> popQuestions = new LinkedList<>();
     private final LinkedList<String> scienceQuestions = new LinkedList<>();

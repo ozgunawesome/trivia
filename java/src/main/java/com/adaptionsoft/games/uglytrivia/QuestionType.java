@@ -1,8 +1,5 @@
 package com.adaptionsoft.games.uglytrivia;
 
-/**
- * Created by ozgunayaz on 10/25/16.
- */
 public enum QuestionType {
 
     POP("Pop"),
@@ -10,9 +7,12 @@ public enum QuestionType {
     SPORTS("Sports"),
     ROCK("Rock");
 
+    /**
+     * --- Created by ozgunayaz on 10/25/16 ---
+     */
     private final String type;
 
-    private QuestionType(final String type) {
+    QuestionType(final String type) {
         this.type = type;
     }
 

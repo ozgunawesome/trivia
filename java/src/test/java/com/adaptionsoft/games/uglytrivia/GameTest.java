@@ -27,7 +27,9 @@ public class GameTest {
     private Players players;
 
     @Mock
-    private Player playerOne, playerTwo;
+    private Player playerOne;
+    @Mock
+    private Player playerTwo;
 
     @InjectMocks
     private Game game;

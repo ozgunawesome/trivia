@@ -1,7 +1,7 @@
 package com.adaptionsoft.games.uglytrivia;
 
 /**
- * Created by ozgunayaz on 10/25/16.
+ * --- Created by ozgunayaz on 10/25/16 ---
  */
 class Constants {
     static final String POP_QUESTION = "Pop Question ";

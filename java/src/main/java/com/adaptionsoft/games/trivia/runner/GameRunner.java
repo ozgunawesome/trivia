@@ -7,7 +7,7 @@ import com.adaptionsoft.games.uglytrivia.Player;
 import java.util.Random;
 
 
-public class GameRunner {
+class GameRunner {
 
 	public static void main(String[] args) {
 		Game aGame = new Game();
