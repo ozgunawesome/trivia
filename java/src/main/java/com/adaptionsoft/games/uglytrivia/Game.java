@@ -14,14 +14,10 @@ public class Game {
     public Game() {
         for (int i = 0; i < 50; i++) {
             popQuestions.addLast(Constants.POP_QUESTION + i);
-            scienceQuestions.addLast((Constants.SCIENCE_QUESTION + i));
-            sportsQuestions.addLast((Constants.SPORTS_QUESTION + i));
-            rockQuestions.addLast(createRockQuestion(i));
+            scienceQuestions.addLast(Constants.SCIENCE_QUESTION + i);
+            sportsQuestions.addLast(Constants.SPORTS_QUESTION + i);
+            rockQuestions.addLast(Constants.ROCK_QUESTION + i);
         }
-    }
-
-    private String createRockQuestion(int index) {
-        return Constants.ROCK_QUESTION + index;
     }
 
     public void add(Player player) {
